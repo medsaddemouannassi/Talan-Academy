@@ -1,0 +1,7 @@
+Activité 1.1.5 : Complexité
+
+Complexité de l'activité 1.1.2 : Les canons de l'ennemi = 1
+Complexité de l'activité 1.1.3 : Le plus grand nombre = 58
+Complexité de l'activité 1.1.4 : Viser c'est gagner = 8
+
+

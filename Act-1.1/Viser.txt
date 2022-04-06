@@ -1,0 +1,21 @@
+Activité 1.1.4 : Viser c'est gagner
+
+var a, b, i: entier
+Début
+a <-- alea[1, 50];
+i <-- 0;
+répéter
+afficher("Entrez la position de l'ennemi");
+saisir(b);
+si a < b alors
+afficher ("Loupé ! (Aide : l'angle est plus petit).")
+i <-- i + 1
+sinon si a > b
+afficher ("Loupé ! (Aide : l'angle est plus grand).")
+i <-- i + 1
+sinon
+afficher("Touché ! bravo vous avez coulé votre ennemi !")
+i <-- 5
+fin si
+jusqu'à i = 5
+fin

@@ -1,0 +1,9 @@
+Activité 1.1.2 : Les canons de l'ennemi
+
+Const nbCanons = 24; cadenceCanon = 12,5; minSurvie = 35;
+Var salves: entier;
+
+Début
+salves = (minSurvie * 60 * nbCanons)/cadenceCanon;
+afficher("Le nombre de salves est ", salves);
+Fin

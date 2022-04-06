@@ -1,0 +1,17 @@
+Activité 1.1.3 : Le plus grand nombre
+
+var n, max : réel
+var t : tableau
+Début
+afficher("Entrez le nombre numéro 1");
+saisir(n);
+max <-- n;
+pour i de 1 à 19 faire
+afficher("Entrez le nombre numéro ", i+1);
+saisir(n);
+	si max < n
+	alors max <-- n;
+	fin si
+fin pour
+afficher("Le plus grand de ces nombres est ", max);
+fin
