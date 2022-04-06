@@ -1,0 +1,48 @@
+Activité 1.2.4 : Est-ce un palindrome ?
+
+ALGORITHME:
+début
+var ch, nvCh: chaine de caractères
+pour i de 0 à long(ch)-1 faire
+	nvCh[i] = ch[long(ch)-1-i]
+fin pour
+si ch == nvCh alors
+	afficher("C'est un mot palindrome")
+finsi
+fin
+
+
+FONCTION:
+fonction palindrome(val ch: chaine de caractères): boolean
+var nvCh: chaine de caractères
+début
+pour i de 0 à long(ch)-1 faire
+	nvCh[i] = ch[long(ch)-1-i]
+fin pour
+si ch == nvCh alors
+	afficher("C'est un mot palindrome")
+finsi
+fin
+finfonction
+
+
+PROGRAMME COMPLET AVEC INTERACTION UTILISATEUR:
+début 
+afficher("Entrez un mot");
+saisir(ch1);
+
+fonction palindrome(val ch: chaine de caractères): chaine de caractères
+var nvCh: chaine de caractères;
+début
+pour i de 0 à long(ch)-1 faire
+	nvCh[i] = ch[long(ch)-1-i];
+fin pour
+si ch == nvCh alors
+	afficher("C'est un mot palindrome");
+finsi
+fin
+finfonction
+
+palindrome(ch1);
+
+fin

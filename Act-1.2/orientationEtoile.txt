@@ -1,0 +1,27 @@
+Activité 1.2.5 : Orientation avec des étoiles
+
+début
+
+var T1: tableau
+T1 = [Sirius, Rigel, Bételgeuse, Arcturus, Aldébaran, Véga, Deneb, et Altaïr]
+
+fonction triBulle(ref T :tableau[1..N] de chaines de caractères) : vide;
+var i,j,k :entier;
+début
+pour i allant de 1 à N-1 faire
+	pour j allant de N à i+1 par pas de -1 faire
+		répéter
+			si T[j][k] > T[j-1][k] alors
+          		echange(T, j, j-1);
+			k <-- min(long(T[j]),long(T[j-1]))
+			sinon si T[j][k] = T[j-1][k] alors
+			k <-- k + 1	
+        		finsi
+		jusqu'à k = min(long(T[j]),long(T[j-1]))
+      	finpour
+finpour
+fin
+finfonction
+
+triBulle(T1);
+fin

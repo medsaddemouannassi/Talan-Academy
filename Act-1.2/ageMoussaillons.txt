@@ -1,0 +1,31 @@
+Activité 1.2.3 : L'âge des apprentis
+
+début
+var T1 : tableau;
+T1 = [45, 54, 23, 32, 64, 46, 28, 82]
+
+fonction minimumSoustableau(ref T :tableau[1..N] d'entiers, val Imin,Imax :entier) :entier;
+   var sauv :entier;
+  début
+    sauv = Imax;
+    pour i allant de Imin+1 à Imax faire
+      si T[i]>T[sauv] alors
+        sauv = i;
+      finsi
+    finpour
+    retourner(sauv);
+  fin
+finfonction
+
+fonction triSelection(ref T :tableau[1..N] d'entiers) :vide;
+  var i,j,indice_cle :entier;
+  début
+    pour i allant de 1 à N-1 faire
+      indice_cle = minimumSoustableau(T,i,N);
+      echange(T[i],T[indice_cle]);
+    finpour
+  fin
+finfonction
+
+triSelection(T1);
+fin
