@@ -41,9 +41,10 @@ finfonction
 
 triBulle(T1);
 
-fonction cherche(ref T :tableau[1..N] d'entiers; val e :entier) :entier;  
+fonction cherche(ref T :tableau[1..N] de chaines de caractères; val e :entier) :chaine de caractères;  
   var d,f :entier;
-  fonction chercheRec(ref T :tableau[1..N] d'entiers; val d,f,e :entier) :entier;    var m;
+  fonction chercheRec(ref T :tableau[1..N] de chaines de caractères; val d,f,e :entier) :chaine de caractères;
+  var m;
     début
       si f == d alors
          si T[d] == e alors
