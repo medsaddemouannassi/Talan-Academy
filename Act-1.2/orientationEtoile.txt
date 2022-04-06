@@ -40,5 +40,35 @@ fin
 finfonction
 
 triBulle(T1);
+
+fonction cherche(ref T :tableau[1..N] d'entiers; val e :entier) :entier;  
+  var d,f :entier;
+  fonction chercheRec(ref T :tableau[1..N] d'entiers; val d,f,e :entier) :entier;    var m;
+    début
+      si f == d alors
+         si T[d] == e alors
+           retourner(f)
+        sinon
+            retourner(NUL)
+        finsi
+      sinon
+        m = partieEntiere((d+f)/2);
+        si T[m] < e alors
+          retourner(chercheRec(T,m+1,f,e))
+        sinon
+          retourner(chercheRec(T,d,m,e))
+        finsi
+      finsi
+    fin
+  finfonction
+  début
+    d = 1;
+    f = N;
+    retourner(chercheRec(T,d,f,e))
+  fin
+finfonction
+
+cherche(T1)
+
 fin
 
