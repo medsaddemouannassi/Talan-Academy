@@ -12,16 +12,33 @@ pour i allant de 1 à N-1 faire
 	pour j allant de N à i+1 par pas de -1 faire
 		répéter
 			si T[j][k] > T[j-1][k] alors
-          		echange(T, j, j-1);
+			echange(T, j, j-1);
 			k <-- min(long(T[j]),long(T[j-1]))
 			sinon si T[j][k] = T[j-1][k] alors
 			k <-- k + 1	
-        		finsi
+			finsi
 		jusqu'à k = min(long(T[j]),long(T[j-1]))
-      	finpour
+	finpour
 finpour
+	retourner(T)
+fin
+finfonction
+
+fonction retrier() : ;
+var étoile, réponse: chaine de caractère
+début
+répéter
+afficher("voulez vous ajouter une étoile ? répondre par oui ou non")
+saisir(réponse)
+	si réponse = oui alors
+	saisir(étoile)
+	T1[long(T1)] = étoile
+	triBulle(T1);
+jusqu'à réponse = non
+retourner(T1);
 fin
 finfonction
 
 triBulle(T1);
 fin
+
