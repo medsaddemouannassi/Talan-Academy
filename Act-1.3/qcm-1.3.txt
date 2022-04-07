@@ -1,0 +1,10 @@
+QCM 1: d)Un langage de programmation
+QCM 2: c)Un langage fortement typé
+QCM 3: c)Java Virtual Machine
+QCM 4: b)C'est l'environnement d’exécution de Java
+QCM 5: d)Il compile le code
+QCM 6: d)Du code compilé
+QCM 7: a)Le point d'entrée de mon programme
+QCM 8: e)Il déclare et initialise une chaîne de caractères contenant "Tintin"
+QCM 9: d)Il affiche "monMot"
+QCM 10: d)0 1 2 3 4 5 
