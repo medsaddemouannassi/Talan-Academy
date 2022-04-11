@@ -1,0 +1,12 @@
+Activité 1.5.1 : QCM-1.5
+
+QCM 1: d)Pour rapprocher la programmation de la vie réelle, créer de la sémantique
+QCM 2: c)Une abstraction d'un objet de la vie réelle
+QCM 3: a)Une variable qui définit un de ses états, une propriété
+QCM 4: b)On identifie dans la problématique un objet répondant aux critères
+QCM 5: a)On identifie ce qui décrit et est propre un objet
+QCM 6: e)On identifie les actions communes à tous les objets
+QCM 7: a)On la déclare, on l'instancie et on l'utilise
+QCM 8: d)Le code ne marche pas, une exception est levée
+QCM 9: c)La portée des éléments de la class
+QCM 10: d)L'élément qui permet d'instancier une classe
