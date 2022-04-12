@@ -1,8 +1,8 @@
 public interface PlayListe {
     public void displayMusicPlayList();
-    public void addMusic(MusiqueImpl music);
+    public void addMusic();
     public void deleteDuplicates();
-    public void displayMusicTwoPlayList(PlayListeImpl playListe);
+    public void displayMusicTwoPlayList();
     public void triMusicAutheur();
     public void triMusicInterprete();
 }
