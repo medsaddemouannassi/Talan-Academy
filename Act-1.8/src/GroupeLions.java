@@ -26,7 +26,7 @@ public class GroupeLions extends GroupePrédateurs implements GroupeLionsAction 
     }
 
     @Override
-    public void afficherCaracPredateurs(ArrayList<Lion> lionGroup) {
+    public void afficherCaracPredateurs() {
         if (this.getCoupleDominant() != null)
             System.out.println("C'est un groupe de lions composé d'un couple dominant et " + (this.getTaille() - 2) + " lion(s) solitaire(s) situé à la zone du " + this.getZone() + " avec une puissance de " + this.getPuissance() + " êtres humains. ");
         else
@@ -39,7 +39,7 @@ public class GroupeLions extends GroupePrédateurs implements GroupeLionsAction 
         int n = 0;
         int o = 0;
         int p = 0;
-        for (Lion lion : lionGroup) {
+        for (Lion lion : Main.lionGroup) {
             if (lion.isDominant().equalsIgnoreCase("non dominant")) i++;
             if (lion.isDominant().equalsIgnoreCase("dominant")) o++;
             if (lion.getRangDomination().equalsIgnoreCase("alpha")) j++;
