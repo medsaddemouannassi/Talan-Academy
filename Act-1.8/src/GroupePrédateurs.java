@@ -32,7 +32,7 @@ public abstract class GroupePrédateurs implements GroupePrédateursAction {
         System.out.println("C'est un groupe composé de " + this.getTaille() + " prédateur(s) et situé à la zone du " + this.getZone());
     }
 
-    public abstract void afficherCaracPredateurs(ArrayList<Lion> lionGroup);
+    public abstract void afficherCaracPredateurs();
 
     @Override
     public void ajouterPredateur(ArrayList groupe, Prédateur prédateur) {
