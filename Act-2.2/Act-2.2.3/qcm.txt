@@ -1,2 +1,0 @@
-QCM 1 : a)Des erreurs de compilation
-QCM 2 : d)Le programme affiche 101
