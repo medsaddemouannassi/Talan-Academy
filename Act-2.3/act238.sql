@@ -1,0 +1,1 @@
+SELECT * FROM films WHERE resume LIKE '%42%' OR titre LIKE '%42%' ORDER BY duration DESC;
