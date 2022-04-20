@@ -1,1 +1,0 @@
-SELECT * FROM fiche_personne WHERE nom LIKE '%a%';
