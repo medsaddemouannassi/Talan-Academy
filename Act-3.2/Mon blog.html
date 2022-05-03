@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon blog</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
+        integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
+</head>
+
+<body>
+    <form action="#">
+        <div>
+            <label for="">Nom: </label>
+            <input type="text" placeholder="Nom" required maxlength="20">
+        </div>
+        <div>
+            <label for="">Prénom: </label>
+            <input type="text" placeholder="Prénom" required maxlength="15">
+        </div>
+        <div>
+            <label for="">Date de naissance: </label>
+            <input type="date" placeholder="Date de naissance" required>
+        </div>
+        <div>
+            <label for="">E-mail: </label>
+            <input type="email" placeholder="E-mail">
+        </div>
+        <div>
+            <label for="">Téléphone: </label>
+            <input type="text" placeholder="Téléphone" required pattern="\d*" maxlength="10">
+        </div>
+        <div>
+            <label for="">Fréquence de lecture: </label>
+            <input type="range" required min="0" max="7">
+        </div>
+    </form>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
