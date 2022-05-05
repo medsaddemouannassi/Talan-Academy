@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
+    <link rel="stylesheet" href="airbnb.css" />
+    <title>Rbnb clone</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light">
+            <img src="https://www.leplantagenet.com/wp-content/uploads/2020/08/pngkey.com-airbnb-logo-png-606021.png" alt="" />
+            <ul class="offset-1 col-lg-3">
+                <li>Hébergements</li>
+                <li>Expériences</li>
+                <li>Expériences en ligne</li>
+            </ul>
+            <ul class="col-lg-2">
+                <li>Devenez hôte</li>
+                <li>
+                    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="
+                display: block;
+                height: 16px;
+                width: 16px;
+                fill: currentcolor;
+              ">
+              <path
+                d="m8.002.25a7.77 7.77 0 0 1 7.748 7.776 7.75 7.75 0 0 1 -7.521 7.72l-.246.004a7.75 7.75 0 0 1 -7.73-7.513l-.003-.245a7.75 7.75 0 0 1 7.752-7.742zm1.949 8.5h-3.903c.155 2.897 1.176 5.343 1.886 5.493l.068.007c.68-.002 1.72-2.365 1.932-5.23zm4.255 0h-2.752c-.091 1.96-.53 3.783-1.188 5.076a6.257 6.257 0 0 0 3.905-4.829zm-9.661 0h-2.75a6.257 6.257 0 0 0 3.934 5.075c-.615-1.208-1.036-2.875-1.162-4.686l-.022-.39zm1.188-6.576-.115.046a6.257 6.257 0 0 0 -3.823 5.03h2.75c.085-1.83.471-3.54 1.059-4.81zm2.262-.424c-.702.002-1.784 2.512-1.947 5.5h3.904c-.156-2.903-1.178-5.343-1.892-5.494l-.065-.007zm2.28.432.023.05c.643 1.288 1.069 3.084 1.157 5.018h2.748a6.275 6.275 0 0 0 -3.929-5.068z"
+              ></path>
+            </svg>
+                </li>
+                <li class="userLi">
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="
+                display: block;
+                fill: none;
+                height: 16px;
+                width: 16px;
+                stroke: currentcolor;
+                stroke-width: 3;
+                overflow: visible;
+              ">
+              <g fill="none" fill-rule="nonzero">
+                <path d="m2 16h28"></path>
+                <path d="m2 24h28"></path>
+                <path d="m2 8h28"></path>
+              </g></svg
+            ><svg
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              role="presentation"
+              focusable="false"
+              style="
+                display: block;
+                height: 100%;
+                width: 100%;
+                fill: currentcolor;
+              "
+            >
+              <path
+                d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"
+              ></path>
+            </svg>
+                </li>
+            </ul>
+        </nav>
+        <form class="offset-3 col-lg-6">
+            <div class="mb-3">
+                <label for="">Destination</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Où allez-vous ?" />
+            </div>
+            <hr>
+            <div class="mb-3">
+                <label for="">Arrivée</label>
+                <div type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" /></div>
+            </div>
+            <hr>
+            <div class="mb-3">
+                <label for="">Départ</label>
+                <div type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" /></div>
+            </div>
+            <hr>
+            <div class="mb-3">
+                <label for="">Voyageurs</label>
+                <div type="number" class="form-control" id="exampleInputEmail1" /></div>
+            </div>
+            <hr>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+            </div>
+        </form>
+    </header>
+    <main>
+        <section id="h1">
+            <h1>
+                Aidez à accueillir 100 000 réfugiés en provenance d'Ukraine<br /><a href="https://fr.airbnb.org/help-ukraine?_set_bev_on_new_domain=1651742051_NjZkYTNmN2RiZDMy">En savoir plus</a
+          >
+        </h1>
+        <div id="img2">
+            <img src="https://a0.muscache.com/im/pictures/a2704500-b282-4411-a2fb-d7f80c4c72a8.jpg?im_w=1200" alt="">
+        <h2>Laissez-vous guider par votre curiosité</h2>
+        <span>Je suis flexible</span>
+        </div>
+      </section>
+      <section id="section2">
+          <h2>Des idées pour votre prochain voyage
+        </h2>
+        <div id="cards">
+            <div class="card" style="width: 23rem;">
+                <img src="https://a0.muscache.com/im/pictures/2ce0594a-fe5c-4d88-b120-b91ff7456c1f.jpg?im_w=320" class="card-img-top" alt="...">
+                <div class="card-body1">
+                  <p class="card-text">Carthage</p>
+                  <span class="card-text">À 16 kilomètres</span>
+                </div>
+              </div>
+              <div class="card" style="width: 23rem;">
+                <img src="https://a0.muscache.com/im/pictures/06248faf-fafa-4adb-9447-3a393ca625a4.jpg?im_w=320" class="card-img-top" alt="...">
+                <div class="card-body2">
+                  <p class="card-text">Marsa</p>
+                  <span class="card-text">À 15 kilomètres</span>
+                </div>
+              </div>
+              <div class="card" style="width: 23rem;">
+                <img src="https://a0.muscache.com/im/pictures/3a7b8005-28b8-48b8-8efa-0a6a00f7d5d8.jpg?im_w=320" class="card-img-top" alt="...">
+                <div class="card-body3">
+                  <p class="card-text">Ariana</p>
+                  <span class="card-text">À 7 kilomètres</span>
+                </div>
+              </div>
+              <div class="card" style="width: 23rem;">
+                <img src="https://a0.muscache.com/im/pictures/aff9e173-b551-44e4-80f3-bd9b9d632f8b.jpg?im_w=320" class="card-img-top" alt="...">
+                <div class="card-body4">
+                  <p class="card-text">Sousse</p>
+                  <span class="card-text">À 115 kilomètres</span>
+                </div>
+              </div>
+        </div>
+      </section>
+      <section id="section3">
+          <h2>Découvrez les expériences Airbnb
+        </h2>
+          <div id="imgSection3">
+            <div>
+                <img src="https://a0.muscache.com/im/pictures/c2adcb16-6c3f-4041-86a1-afa9c303c500.jpg?im_w=720" alt="">
+                <p>Des expériences
+                    à<br> vivre pendant <br>
+                    votre voyage</p>
+                    <button type="button" class="btn btn-light">Expériences</button>
+            </div>
+            <div>
+                <img src="https://a0.muscache.com/im/pictures/c1bdf53f-2a19-4529-aa9b-1b0e6bd8d0ee.jpg?im_w=720" alt="">
+                <p>Des expériences <br>
+                    à vivre <br>
+                    de chez vous</p>
+                <button type="button" class="btn btn-light">Expériences en ligne</button>
+            </div>
+          </div>
+      </section>
+      <section id="section4">
+          <div>
+              <p>Offrez une <br>
+                carte cadeau <br>
+                Airbnb</p>
+              <button type="button" class="btn btn-dark">En savoir plus</button>
+          </div>
+          <img src="https://a0.muscache.com/im/pictures/1ca4a497-ba40-4429-be1c-ac6abe4209c6.jpg?im_w=1200" alt="">
+      </section>
+      <section id="section5">
+          <h4>Des idées pour vos prochaines escapades
+        </h4>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Bord de mer</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Sport d'hiver</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Montagne</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="house-tab" data-bs-toggle="tab" data-bs-target="#house" type="button" role="tab" aria-controls="house" aria-selected="false">Autres destinations populaires</button>
+              </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <ul>
+                    <li>Agadir<br><span>Souss-Massa</span></li>
+                    <li>Alicante <br> <span>Communité valencienne</span></li>
+                    <li>Antibes <br> <span>Provence-Alpes-Côte d'Azur</span></li>
+                </ul>
+                <ul>
+                    <li>Agde <br><span>Occitanie</span></li>
+                    <li>Ancelle <br> <span>Provence-Alpes-Côte d'Azur</span></li>
+                    <li>Arcachon <br> <span>Nouvelle-Aquitaine</span></li>
+                </ul>
+                <ul>
+                    <li>Ajaccio <br><span>Corse</span></li>
+                    <li>Andernos-les-Bains <br> <span>Nouvelle-Aquitaine</span></li>
+                    <li>Argelès-sur-Mer <br> <span>Occitanie</span></li>
+                </ul>
+                <ul>
+                    <li>Albufeira <br><span>District de Faro</span></li>
+                    <li>Anglet <br> <span>Nouvelle-Aquitaine</span></li>
+                    <li>En savoir plus</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <ul>
+                    <li>Agadir<br><span>Souss-Massa</span></li>
+                    <li>Alicante <br> <span>Communité valencienne</span></li>
+                    <li>Antibes <br> <span>Provence-Alpes-Côte d'Azur</span></li>
+                </ul>
+                <ul>
+                    <li>Agde <br><span>Occitanie</span></li>
+                    <li>Ancelle <br> <span>Provence-Alpes-Côte d'Azur</span></li>
+                    <li>Arcachon <br> <span>Nouvelle-Aquitaine</span></li>
+                </ul>
+                <ul>
+                    <li>Ajaccio <br><span>Corse</span></li>
+                    <li>Andernos-les-Bains <br> <span>Nouvelle-Aquitaine</span></li>
+                    <li>Argelès-sur-Mer <br> <span>Occitanie</span></li>
+                </ul>
+                <ul>
+                    <li>Albufeira <br><span>District de Faro</span></li>
+                    <li>Anglet <br> <span>Nouvelle-Aquitaine</span></li>
+                    <li>En savoir plus</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <ul>
+                    <li>Agadir<br><span>Souss-Massa</span></li>
+                    <li>Alicante <br> <span>Communité valencienne</span></li>
+                    <li>Antibes <br> <span>Provence-Alpes-Côte d'Azur</span></li>
+                </ul>
+                <ul>
+                    <li>Agde <br><span>Occitanie</span></li>
+                    <li>Ancelle <br> <span>Provence-Alpes-Côte d'Azur</span></li>
+                    <li>Arcachon <br> <span>Nouvelle-Aquitaine</span></li>
+                </ul>
+                <ul>
+                    <li>Ajaccio <br><span>Corse</span></li>
+                    <li>Andernos-les-Bains <br> <span>Nouvelle-Aquitaine</span></li>
+                    <li>Argelès-sur-Mer <br> <span>Occitanie</span></li>
+                </ul>
+                <ul>
+                    <li>Albufeira <br><span>District de Faro</span></li>
+                    <li>Anglet <br> <span>Nouvelle-Aquitaine</span></li>
+                    <li>En savoir plus</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="house" role="tabpanel" aria-labelledby="house-tab">
+                <ul>
+                    <li>Agadir<br><span>Souss-Massa</span></li>
+                    <li>Alicante <br> <span>Communité valencienne</span></li>
+                    <li>Antibes <br> <span>Provence-Alpes-Côte d'Azur</span></li>
+                </ul>
+                <ul>
+                    <li>Agde <br><span>Occitanie</span></li>
+                    <li>Ancelle <br> <span>Provence-Alpes-Côte d'Azur</span></li>
+                    <li>Arcachon <br> <span>Nouvelle-Aquitaine</span></li>
+                </ul>
+                <ul>
+                    <li>Ajaccio <br><span>Corse</span></li>
+                    <li>Andernos-les-Bains <br> <span>Nouvelle-Aquitaine</span></li>
+                    <li>Argelès-sur-Mer <br> <span>Occitanie</span></li>
+                </ul>
+                <ul>
+                    <li>Albufeira <br><span>District de Faro</span></li>
+                    <li>Anglet <br> <span>Nouvelle-Aquitaine</span></li>
+                    <li>En savoir plus</li>
+                </ul>
+            </div>
+          </div>
+      </section>
+      <footer>
+          <div id="footer1">
+            <div>
+                <h6>Assistance</h6>
+                <ul>
+                  <li>Centre d'aide</li>
+                  <li>Informations de sécurité</li>
+                  <li>Soutenir les personnes en situation de handicap</li>
+                  <li>Options d'annulation</li>
+                  <li>Nos mesures face au Covid-19</li>
+                  <li>Signaler un problème de voisinage</li>
+                </ul>
+              </div>
+            <div>
+                <h6>Communauté</h6>
+                <ul>
+                    <li>Airbnb.org : réponse aux catastrophes</li>
+                    <li>Soutenir les réfugiés afghans</li>
+                    <li>Lutte contre la discrimination</li>
+                </ul>
+              </div>
+            <div>
+                <h6>Accueil de voyageurs</h6>
+                <ul>
+                    <li>Devenir hôte</li>
+                    <li>AirCover pour les hôtes</li>
+                    <li>Ressources pour les hôtes</li>
+                    <li>Forum de la communauté</li>
+                    <li>Accueillir de manière responsable</li>
+                </ul>
+              </div>
+            <div>
+                <h6>À proposs</h6>
+                <ul>
+                    <li>Newsroom</li>
+                    <li>En savoir plus sur les nouveautésr</li>
+                    <li>Lettre de nos fondateurs</li>
+                    <li>Carrières</li>
+                    <li>Investisseu</li>
+                </ul>
+              </div>
+          </div>
+          <hr>
+          <div id="footer2">
+            <ul class="col-lg-6">
+                <li>© 2022 Airbnb, Inc.</li>
+                <li>Confidentialité</li>
+                <li>Conditions générales</li>
+                <li>Plan du site</li>
+                <li>Fonctionnement du site</li>
+                <li>Infos sur l'entreprise</li>
+            </ul>
+            <ul class="col-lg-2">
+                <li><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="
+                    display: block;
+                    height: 16px;
+                    width: 16px;
+                    fill: currentcolor;
+                  ">
+                  <path
+                    d="m8.002.25a7.77 7.77 0 0 1 7.748 7.776 7.75 7.75 0 0 1 -7.521 7.72l-.246.004a7.75 7.75 0 0 1 -7.73-7.513l-.003-.245a7.75 7.75 0 0 1 7.752-7.742zm1.949 8.5h-3.903c.155 2.897 1.176 5.343 1.886 5.493l.068.007c.68-.002 1.72-2.365 1.932-5.23zm4.255 0h-2.752c-.091 1.96-.53 3.783-1.188 5.076a6.257 6.257 0 0 0 3.905-4.829zm-9.661 0h-2.75a6.257 6.257 0 0 0 3.934 5.075c-.615-1.208-1.036-2.875-1.162-4.686l-.022-.39zm1.188-6.576-.115.046a6.257 6.257 0 0 0 -3.823 5.03h2.75c.085-1.83.471-3.54 1.059-4.81zm2.262-.424c-.702.002-1.784 2.512-1.947 5.5h3.904c-.156-2.903-1.178-5.343-1.892-5.494l-.065-.007zm2.28.432.023.05c.643 1.288 1.069 3.084 1.157 5.018h2.748a6.275 6.275 0 0 0 -3.929-5.068z"
+                  ></path>
+                </svg>&nbsp; Français (FR)</li>
+                <li>€ EUR</li>
+            </ul>
+            <ul class="col-lg-1 offset-1">
+                <li><i class="fa-brands fa-facebook-f"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+                <li><i class="fa-brands fa-instagram-square"></i></li>
+            </ul>
+          </div>
+      </footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
