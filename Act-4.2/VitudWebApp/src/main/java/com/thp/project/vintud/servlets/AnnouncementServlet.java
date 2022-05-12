@@ -1,5 +1,7 @@
 package com.thp.project.vintud.servlets;
 
+import com.thp.project.vintud.dao.controller.CreateAnnouncementController;
+import com.thp.project.vintud.entity.impl.AnnouncementImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,14 +16,18 @@ public class AnnouncementServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
-        String category = request.getParameter("category");
-        String price = request.getParameter("price");
-        String localisation = request.getParameter("localisation");
+        AnnouncementImpl announcement = new AnnouncementImpl();
+        announcement.setTitle(request.getParameter("title"));
+        announcement.setDescription(request.getParameter("description"));
+        String category = !request.getParameter("category").equals(null) ? request.getParameter("category").trim(): null;
+        announcement.setCategoryId(Integer.parseInt(category));
+        String price = !request.getParameter("price").equals(null) ? request.getParameter("price").trim(): null;
+        announcement.setPrice(Integer.parseInt(price));
+        announcement.setLocalisation(request.getParameter("localisation"));
+        announcement.setUserId((Integer) request.getSession().getAttribute("id"));
 
-
-        request.setAttribute("title", title);
+        CreateAnnouncementController createAnnouncementController = new CreateAnnouncementController();
+        request.setAttribute("createAnnouncementMsg", createAnnouncementController.createAnnouncement(announcement));
         this.getServletContext().getRequestDispatcher("/WEB-INF/announcement.jsp").forward(request, response);
     }
 }

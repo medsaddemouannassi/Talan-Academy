@@ -45,7 +45,6 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
                     announcements.add(announcement);
                 } while (resultSet.next());
             }
-            announcements.forEach(System.out::println);
             return announcements;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,10 +60,10 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
 
     // Create announcement
     @Override
-    public void createAnnouncement(AnnouncementImpl announcement) {
+    public String createAnnouncement(AnnouncementImpl announcement) {
         Connection connection = vintudFactory.getConnectionManager();
         if (connection == null) {
-            return;
+            return null;
         }
         String query = "INSERT INTO announcement(title, description, category_id, price, publication_date, status, is_available, view_number, localisation, user_id) VALUES(?,?,?,?,?,?,?,?,?,?)";
         Date date = new Date(System.currentTimeMillis());
@@ -80,28 +79,37 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
             preparedStatement.setString(9, announcement.getLocalisation().toLowerCase());
             preparedStatement.setInt(10, announcement.getUserId());
             preparedStatement.executeUpdate();
-            query = "SELECT posted_announcements FROM users WHERE id = ?";
-            List<Integer> announcements = new ArrayList<>();
-            try (PreparedStatement preparedStatement1 = connection.prepareStatement(query)) {
-                preparedStatement1.setInt(1, announcement.getUserId());
+            query = "SELECT MAX(id) FROM announcement";
+            try (PreparedStatement preparedStatement1 = connection.prepareStatement(query)){
                 ResultSet resultSet = preparedStatement1.executeQuery();
-                if (resultSet.next() && resultSet.getArray(1) != null) {
-                    Integer[] array = (Integer[]) resultSet.getArray(1).getArray();
-                    for (Integer elem : array) {
-                        announcements.add(elem);
+                if (!resultSet.next()) {
+                    return null;
+                } else {
+                    announcement.setId(resultSet.getInt("id"));
+                    query = "SELECT posted_announcements FROM users WHERE id = ?";
+                    List<Integer> announcements = new ArrayList<>();
+                    try (PreparedStatement preparedStatement2 = connection.prepareStatement(query)) {
+                        preparedStatement2.setInt(1, announcement.getUserId());
+                        resultSet = preparedStatement2.executeQuery();
+                        if (resultSet.next() && resultSet.getArray(1) != null) {
+                            Integer[] array = (Integer[]) resultSet.getArray(1).getArray();
+                            for (Integer elem : array) {
+                                announcements.add(elem);
+                            }
+                        }
+                        announcements.add(announcement.getId());
+                        Integer[] announcementsSQL = announcements.toArray(new Integer[announcements.size()]);
+                        Array array = connection.createArrayOf("Integer", announcementsSQL);
+                        query = "UPDATE users SET posted_announcements = ? WHERE id = ?";
+                        try (PreparedStatement preparedStatement3 = connection.prepareStatement(query)) {
+                            preparedStatement3.setArray(1, array);
+                            preparedStatement3.setInt(2, announcement.getUserId());
+                            preparedStatement3.executeUpdate();
+                        }
                     }
                 }
-                announcements.add(announcement.getId());
-                announcements.forEach(System.out::println);
-                Integer[] announcementsSQL = announcements.toArray(new Integer[announcements.size()]);
-                Array array = connection.createArrayOf("Integer", announcementsSQL);
-                query = "UPDATE users SET posted_announcements = ? WHERE id = ?";
-                try (PreparedStatement preparedStatement2 = connection.prepareStatement(query)) {
-                    preparedStatement2.setArray(1, array);
-                    preparedStatement2.setInt(2, announcement.getUserId());
-                    preparedStatement2.executeUpdate();
-                }
             }
+            return "Votre annonce a bien été enregistrée";
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -111,6 +119,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
     // Update announcement
@@ -366,7 +375,6 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int view_number = resultSet.getInt("view_number");
-                System.out.println(view_number);
                 return view_number;
             }
         } catch (SQLException e) {
@@ -377,7 +385,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
 
     // Display posted announcements by user
     @Override
-    public List<AnnouncementImpl> disAnnByUser(int id) {
+    public List<AnnouncementImpl> disAnnByUser(int id)  {
         Connection connection = vintudFactory.getConnectionManager();
         if (connection == null) {
             return null;
@@ -386,29 +394,34 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next() && resultSet.getArray(1) != null) {
+            if (resultSet.next() && resultSet.getArray("posted_announcements") != null) {
                 Integer[] array = (Integer[]) resultSet.getArray(1).getArray();
+                System.out.println(array[1]);
                 List<AnnouncementImpl> announcements = new ArrayList<>();
                 for (Integer elem : array) {
                     query = "SELECT * FROM announcement WHERE id = ?";
                     try (PreparedStatement preparedStatement1 = connection.prepareStatement(query)) {
                         preparedStatement1.setInt(1, elem);
                         resultSet = preparedStatement1.executeQuery();
-                        if (resultSet.next()) {
-                            AnnouncementImpl announcement = new AnnouncementImpl();
-                            announcement.setTitle(resultSet.getString("title").replaceAll("  ", ""));
-                            announcement.setDescription(resultSet.getString("description").replaceAll("  ", ""));
-                            announcement.setCategoryId(resultSet.getInt("category_id"));
-                            announcement.setPrice(resultSet.getInt("price"));
-                            announcement.setPhoto(resultSet.getBlob("picture"));
-                            announcement.setPublication_date(resultSet.getDate("publication_date"));
-                            Status status = resultSet.getString("status") == null ? null : Status.valueOf(resultSet.getString("status"));
-                            announcement.setStatus(status);
-                            announcement.setAvailable(resultSet.getBoolean("is_available"));
-                            announcement.setView_number(resultSet.getInt("view_number"));
-                            announcement.setLocalisation(resultSet.getString("localisation").replaceAll("  ", ""));
-                            announcement.setUserId(resultSet.getInt("user_id"));
-                            announcements.add(announcement);
+                        if (!resultSet.next()) {
+                            return null;
+                        } else {
+                            do {
+                                AnnouncementImpl announcement = new AnnouncementImpl();
+                                announcement.setTitle(resultSet.getString("title").replaceAll("  ", ""));
+                                announcement.setDescription(resultSet.getString("description").replaceAll("  ", ""));
+                                announcement.setCategoryId(resultSet.getInt("category_id"));
+                                announcement.setPrice(resultSet.getInt("price"));
+                                announcement.setPhoto(resultSet.getBlob("picture"));
+                                announcement.setPublication_date(resultSet.getDate("publication_date"));
+                                Status status = resultSet.getString("status") == null ? null : Status.valueOf(resultSet.getString("status"));
+                                announcement.setStatus(status);
+                                announcement.setAvailable(resultSet.getBoolean("is_available"));
+                                announcement.setView_number(resultSet.getInt("view_number"));
+                                announcement.setLocalisation(resultSet.getString("localisation").replaceAll("  ", ""));
+                                announcement.setUserId(resultSet.getInt("user_id"));
+                                announcements.add(announcement);
+                            } while (resultSet.next());
                         }
                     }
                 }

@@ -32,12 +32,21 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>LogInServlet</servlet-name>
-        <servlet-class>com.thp.project.vintud.servlets.LogInServlet</servlet-class>
+        <servlet-name>ConnectionServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.ConnectionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LogInServlet</servlet-name>
+        <servlet-name>ConnectionServlet</servlet-name>
         <url-pattern>/vintud/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MyAnnouncementsServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.MyAnnouncementsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyAnnouncementsServlet</servlet-name>
+        <url-pattern>/vintud/myannouncements</url-pattern>
     </servlet-mapping>
 
     <jsp-config>

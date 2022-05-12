@@ -1,15 +1,11 @@
 package com.thp.project.vintud.servlets;
 
 import com.thp.project.vintud.dao.controller.AnnouncementController;
-import com.thp.project.vintud.entity.Announcement;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.sql.Array;
-import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet(name = "AnnouncementsServlet", value = "/AnnouncementsServlet")
 public class AnnouncementsServlet extends HttpServlet {

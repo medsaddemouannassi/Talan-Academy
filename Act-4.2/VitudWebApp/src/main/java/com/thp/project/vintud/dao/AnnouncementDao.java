@@ -9,7 +9,7 @@ public interface AnnouncementDao {
     List<AnnouncementImpl> displayAnnouncements();
 
     // Create announcement
-    void createAnnouncement(AnnouncementImpl announcement);
+    String createAnnouncement(AnnouncementImpl announcement);
 
     // Update announcement
     void updateAnnouncement(AnnouncementImpl announcement);

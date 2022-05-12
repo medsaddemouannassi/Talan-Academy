@@ -52,7 +52,8 @@
         </select>
     </div>
     <input type="submit" class="form-control" id="submit">
-    <c:if test="${ !empty message }"><small><c:out value="${ message }" /></small></c:if>
+    <c:if test="${ message == 'Welcome' }"><meta http-equiv="refresh" content="0; url=http://localhost:8080/vintud/login" /></c:if>
+    <c:if test="${ message != 'Welcome' }"><small><c:out value="${ message }" /></small></c:if>
 </form>
 
 

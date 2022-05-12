@@ -1,6 +1,7 @@
 package com.thp.project.vintud.dao.impl;
 
 import com.thp.project.vintud.dao.UserDao;
+import com.thp.project.vintud.entity.User;
 import com.thp.project.vintud.entity.impl.AnnouncementImpl;
 import com.thp.project.vintud.entity.impl.UserImpl;
 import com.thp.project.vintud.dao.factory.VintudFactory;
@@ -57,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 
     // User login
     @Override
-    public String login(String email, String password) {
+    public UserImpl login(String email, String password) {
         Connection connection = vintudFactory.getConnectionManager();
         if (connection == null) {
             return null;
@@ -65,7 +66,7 @@ public class UserDaoImpl implements UserDao {
         String query = "SELECT * FROM users WHERE LOWER(email) = ? AND password = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, email.toLowerCase());
-            preparedStatement.setString(2, password.toLowerCase());
+            preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 query = "UPDATE users SET is_connected = true WHERE LOWER(email) = ? AND password = ?";
@@ -76,9 +77,13 @@ public class UserDaoImpl implements UserDao {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                return "Welcome " + resultSet.getString("first_name").replaceAll("  ", "") + " " + resultSet.getString("last_name").replaceAll("  ", "");
+                UserImpl user = new UserImpl();
+                user.setId(resultSet.getInt("id"));
+                user.setFirstName(resultSet.getString("first_name"));
+                user.setLastName(resultSet.getString("last_name"));
+                return user;
             } else {
-                return "Please verify your email/password";
+                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();
