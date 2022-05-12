@@ -31,8 +31,10 @@ public class SignInServlet extends HttpServlet {
         user.setRoleId(Integer.parseInt(role));
 
         SignInController signInController = new SignInController();
-        request.setAttribute("message", signInController.signin(user));
-        if (signInController.signin(user).equals("Welcome")) {
+
+        request.setAttribute("message", signInController.signUp(user));
+        System.out.println(signInController.signUp(user));
+        if (signInController.signUp(user).equals("Welcome")) {
             this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/signin.jsp").forward(request, response);

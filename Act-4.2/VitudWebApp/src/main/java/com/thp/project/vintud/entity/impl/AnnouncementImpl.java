@@ -82,7 +82,7 @@ public class AnnouncementImpl implements Announcement {
 
     public void setStatus(Status status) { this.status = status; }
 
-    public boolean isAvailable() {
+    public boolean isIs_available() {
         return is_available;
     }
 

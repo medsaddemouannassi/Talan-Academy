@@ -57,10 +57,10 @@ public class UserDaoImpl implements UserDao {
 
     // User login
     @Override
-    public void login(String email, String password) {
+    public String login(String email, String password) {
         Connection connection = vintudFactory.getConnectionManager();
         if (connection == null) {
-            return;
+            return null;
         }
         String query = "SELECT * FROM users WHERE LOWER(email) = ? AND password = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -76,9 +76,9 @@ public class UserDaoImpl implements UserDao {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Welcome " + resultSet.getString("first_name").replaceAll("  ", "") + " " + resultSet.getString("last_name").replaceAll("  ", ""));
+                return "Welcome " + resultSet.getString("first_name").replaceAll("  ", "") + " " + resultSet.getString("last_name").replaceAll("  ", "");
             } else {
-                System.out.println("Please verify your email/password");
+                return "Please verify your email/password";
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,6 +89,7 @@ public class UserDaoImpl implements UserDao {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
     // User logout
@@ -212,19 +213,11 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return true;
-            } else {
-                return false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-        return null;
+        return false;
     }
 
     // Verify if user already exist by phone
@@ -240,18 +233,10 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return true;
-            } else {
-                return false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-        return null;
+        return false;
     }
 }

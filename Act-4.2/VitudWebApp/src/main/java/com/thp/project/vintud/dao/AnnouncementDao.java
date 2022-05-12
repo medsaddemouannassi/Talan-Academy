@@ -2,12 +2,11 @@ package com.thp.project.vintud.dao;
 
 import com.thp.project.vintud.entity.impl.AnnouncementImpl;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 public interface AnnouncementDao {
     // Display all announcements
-    ResultSet displayAnnouncements();
+    List<AnnouncementImpl> displayAnnouncements();
 
     // Create announcement
     void createAnnouncement(AnnouncementImpl announcement);

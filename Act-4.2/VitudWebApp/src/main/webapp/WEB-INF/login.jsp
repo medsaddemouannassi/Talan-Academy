@@ -23,7 +23,7 @@
         <input type="password" class="form-control" name="password" id="exampleInputPwd">
     </div>
     <input type="submit" class="form-control" id="submit">
-    <c:if test="${ !empty message }"><small><c:out value="${ message }" /></small></c:if>
+    <c:if test="${ !empty messageLogin }"><small><c:out value="${ messageLogin }" /></small></c:if>
 </form>
 
 

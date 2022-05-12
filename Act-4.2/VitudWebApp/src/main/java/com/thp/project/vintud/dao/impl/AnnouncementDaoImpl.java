@@ -15,7 +15,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
 
     // Display all announcements
     @Override
-    public ResultSet displayAnnouncements() {
+    public List<AnnouncementImpl> displayAnnouncements() {
         Connection connection = vintudFactory.getConnectionManager();
         if (connection == null) {
             return null;
@@ -25,11 +25,11 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
             ResultSet resultSet = prepareStatement.executeQuery();
             List<AnnouncementImpl> announcements = new ArrayList<>();
             if (!resultSet.next()){
-                System.out.println("fffff");
-                resultSet.next();
+                return null;
             } else {
-                while (resultSet.next()) {
+                do {
                     AnnouncementImpl announcement = new AnnouncementImpl();
+                    announcement.setId(resultSet.getInt("id"));
                     announcement.setTitle(resultSet.getString("title").replaceAll("  ", ""));
                     announcement.setDescription(resultSet.getString("description").replaceAll("  ", ""));
                     announcement.setCategoryId(resultSet.getInt("category_id"));
@@ -43,10 +43,10 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
                     announcement.setLocalisation(resultSet.getString("localisation").replaceAll("  ", ""));
                     announcement.setUserId(resultSet.getInt("user_id"));
                     announcements.add(announcement);
-                }
+                } while (resultSet.next());
             }
             announcements.forEach(System.out::println);
-            return resultSet;
+            return announcements;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -75,7 +75,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
             preparedStatement.setDouble(4, announcement.getPrice());
             preparedStatement.setDate(5, date);
             preparedStatement.setObject(6, announcement.getStatus(), java.sql.Types.OTHER);
-            preparedStatement.setBoolean(7, announcement.isAvailable());
+            preparedStatement.setBoolean(7, announcement.isIs_available());
             preparedStatement.setInt(8, announcement.getView_number());
             preparedStatement.setString(9, announcement.getLocalisation().toLowerCase());
             preparedStatement.setInt(10, announcement.getUserId());
@@ -131,7 +131,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
                     preparedStatement1.setString(2, announcement.getDescription().toLowerCase());
                     preparedStatement1.setInt(3, announcement.getCategoryId());
                     preparedStatement1.setDouble(4, announcement.getPrice());
-                    preparedStatement1.setBoolean(5, announcement.isAvailable());
+                    preparedStatement1.setBoolean(5, announcement.isIs_available());
                     preparedStatement1.setObject(6, announcement.getStatus(), java.sql.Types.OTHER);
                     preparedStatement1.setInt(7, announcement.getView_number());
                     preparedStatement1.setString(8, announcement.getLocalisation().toLowerCase());
