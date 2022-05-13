@@ -8,6 +8,7 @@ import com.thp.project.vintud.dao.factory.VintudFactoryImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AnnouncementDaoImpl implements AnnouncementDao {
@@ -85,7 +86,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
                 if (!resultSet.next()) {
                     return null;
                 } else {
-                    announcement.setId(resultSet.getInt("id"));
+                    announcement.setId(resultSet.getInt(1));
                     query = "SELECT posted_announcements FROM users WHERE id = ?";
                     List<Integer> announcements = new ArrayList<>();
                     try (PreparedStatement preparedStatement2 = connection.prepareStatement(query)) {
@@ -124,10 +125,10 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
 
     // Update announcement
     @Override
-    public void updateAnnouncement(AnnouncementImpl announcement) {
+    public String updateAnnouncement(AnnouncementImpl announcement) {
         Connection connection = vintudFactory.getConnectionManager();
         if (connection == null) {
-            return;
+            return null;
         }
         String query = "SELECT id FROM announcement WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -147,6 +148,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
                     preparedStatement1.setInt(9, announcement.getUserId());
                     preparedStatement1.setInt(10, resultSet.getInt("id"));
                     preparedStatement1.executeUpdate();
+                    return "Votre annonce a bien été modifiée";
                 } catch (SQLException e) {
                     e.printStackTrace();
                 } finally {
@@ -160,6 +162,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     // Delete announcement
@@ -174,15 +177,19 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
             preparedStatement.setInt(1, announcement.getId());
             preparedStatement.executeUpdate();
             query = "SELECT posted_announcements FROM users WHERE id = ?";
-            List<Integer> announcements = new ArrayList<>();
             try (PreparedStatement preparedStatement1 = connection.prepareStatement(query)) {
                 preparedStatement1.setInt(1, announcement.getUserId());
                 ResultSet resultSet = preparedStatement1.executeQuery();
+                List<Integer> announcements = null;
                 if (resultSet.next() && resultSet.getArray(1) != null) {
                     Integer[] array = (Integer[]) resultSet.getArray(1).getArray();
-                    for (Integer elem : array) {
-                        if (elem == announcement.getId()) announcements.remove(elem);
-                        break;
+                    announcements = new ArrayList<>(Arrays.asList(array));
+                    for (Integer elem : announcements) {
+                        System.out.println("ddd " + elem);
+                        if (elem == announcement.getId()) {
+                            announcements.remove(elem);
+                            break;
+                        }
                     }
                 }
                 announcements.forEach(System.out::println);
@@ -395,8 +402,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next() && resultSet.getArray("posted_announcements") != null) {
-                Integer[] array = (Integer[]) resultSet.getArray(1).getArray();
-                System.out.println(array[1]);
+                Integer[] array = (Integer[]) resultSet.getArray("posted_announcements").getArray();
                 List<AnnouncementImpl> announcements = new ArrayList<>();
                 for (Integer elem : array) {
                     query = "SELECT * FROM announcement WHERE id = ?";
@@ -408,6 +414,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
                         } else {
                             do {
                                 AnnouncementImpl announcement = new AnnouncementImpl();
+                                announcement.setId(resultSet.getInt("id"));
                                 announcement.setTitle(resultSet.getString("title").replaceAll("  ", ""));
                                 announcement.setDescription(resultSet.getString("description").replaceAll("  ", ""));
                                 announcement.setCategoryId(resultSet.getInt("category_id"));
@@ -425,7 +432,6 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
                         }
                     }
                 }
-                announcements.forEach(System.out::println);
                 return announcements;
             }
         } catch (SQLException e) {

@@ -13,6 +13,7 @@ public class AnnouncementsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AnnouncementController announcementController = new AnnouncementController();
         request.setAttribute("announcements", announcementController.getAnnouncements());
+
         this.getServletContext().getRequestDispatcher("/WEB-INF/announcements.jsp").forward(request, response);
     }
 

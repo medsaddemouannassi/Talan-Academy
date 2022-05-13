@@ -12,7 +12,7 @@ public interface AnnouncementDao {
     String createAnnouncement(AnnouncementImpl announcement);
 
     // Update announcement
-    void updateAnnouncement(AnnouncementImpl announcement);
+    String updateAnnouncement(AnnouncementImpl announcement);
 
     // Delete announcement
     void deleteAnnouncement(AnnouncementImpl announcement);

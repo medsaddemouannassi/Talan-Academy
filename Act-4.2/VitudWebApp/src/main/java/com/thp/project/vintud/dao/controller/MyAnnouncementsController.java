@@ -14,4 +14,12 @@ public class MyAnnouncementsController {
     public List<AnnouncementImpl> getMyAnnouncements(int id) {
         return announcementDao.disAnnByUser(id);
     }
+
+    public void deleteAnnouncement(AnnouncementImpl announcement) {
+        announcementDao.deleteAnnouncement(announcement);
+    }
+
+    public String updateAnnouncement(AnnouncementImpl announcement) {
+        return announcementDao.updateAnnouncement(announcement);
+    }
 }
