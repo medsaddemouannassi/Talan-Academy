@@ -1,7 +1,7 @@
 package com.thp.project.vintud.dao.impl;
 
 import com.thp.project.vintud.dao.SearchDao;
-import com.thp.project.vintud.Search;
+import com.thp.project.vintud.entity.impl.Search;
 import com.thp.project.vintud.dao.factory.VintudFactory;
 import com.thp.project.vintud.dao.factory.VintudFactoryImpl;
 

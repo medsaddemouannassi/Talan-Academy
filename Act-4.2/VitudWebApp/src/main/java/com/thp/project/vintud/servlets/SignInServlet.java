@@ -1,8 +1,6 @@
 package com.thp.project.vintud.servlets;
 
 import com.thp.project.vintud.dao.controller.SignInController;
-import com.thp.project.vintud.dao.factory.VintudFactory;
-import com.thp.project.vintud.dao.factory.VintudFactoryImpl;
 import com.thp.project.vintud.entity.impl.UserImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

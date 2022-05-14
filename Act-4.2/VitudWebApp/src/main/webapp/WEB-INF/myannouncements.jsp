@@ -1,5 +1,4 @@
-<%@ page import="com.thp.project.vintud.servlets.MyAnnouncementsServlet" %>
-<%@ page import="com.thp.project.vintud.dao.controller.MyAnnouncementsController" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: msouannassi
   Date: 12/05/2022
@@ -32,7 +31,7 @@
             <th>Views</th>
             <th>Localisation</th>
             <th>User ID</th>
-            <th>Action</th>
+            <th style="text-align: center">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -49,9 +48,10 @@
                 <td><c:out value="${ myAnnouncement.view_number }"/></td>
                 <td><c:out value="${ myAnnouncement.localisation }"/></td>
                 <td><c:out value="${ myAnnouncement.userId }"/></td>
-                <td>
-                    <form style="margin: 0 !important;" action="update-announcement" method="post">
-                        <button type="submit" name="edit" value="edit" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i>
+                <td class="d-flex justify-content-evenly">
+                    <form style="margin: 0 !important;" action="update-announcement" method="get">
+                        <button name="action" value="edit" class="btn btn-sm btn-secondary"><i
+                                class="fa-solid fa-pen-to-square"></i>
                             <input hidden name="myAnnouncementId" value="${myAnnouncement.id}"/>
                             <input hidden name="myAnnouncementTitle" value="${myAnnouncement.title}"/>
                             <input hidden name="myAnnouncementDescription" value="${myAnnouncement.description}"/>
@@ -61,7 +61,8 @@
                         </button>
                     </form>
                     <form style="margin: 0 !important;" action="myannouncements" method="post">
-                        <button type="submit" name="delete" value="delete" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>
+                        <button type="submit" name="action" value="delete" class="btn btn-sm btn-danger"><i
+                                class="fa-solid fa-trash-can"></i>
                             <input hidden name="id" value="${myAnnouncement.id}"/>
                             <input hidden name="userId" value="${myAnnouncement.userId}"/>
                         </button>

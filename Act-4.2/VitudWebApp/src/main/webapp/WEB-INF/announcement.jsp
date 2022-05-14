@@ -26,9 +26,9 @@
         <label class="input-group-text" for="inputGroupSelect01">Category</label>
         <select class="form-select" name="category" id="inputGroupSelect01">
             <option selected>Choose category</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
         </select>
     </div>
     <div class="mb-3">
@@ -41,6 +41,7 @@
     </div>
     <input type="submit" class="form-control" id="submit">
     <c:if test="${ !empty createAnnouncementMsg }"><small><c:out value="${ createAnnouncementMsg }" /></small></c:if>
+    <c:if test="${ !empty updateAnnouncementMsg }"><small><c:out value="${ updateAnnouncementMsg }" /></small></c:if>
 </form>
 
 

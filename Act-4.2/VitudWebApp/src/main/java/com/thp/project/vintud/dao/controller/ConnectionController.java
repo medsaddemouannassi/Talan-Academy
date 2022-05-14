@@ -12,4 +12,8 @@ public class ConnectionController {
         return userDao.login(email, password);
     }
 
+    public void logOut(int id) {
+        userDao.logout(id);
+    }
+
 }

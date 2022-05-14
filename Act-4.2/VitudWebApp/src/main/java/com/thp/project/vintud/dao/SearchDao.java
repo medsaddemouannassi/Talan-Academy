@@ -1,6 +1,6 @@
 package com.thp.project.vintud.dao;
 
-import com.thp.project.vintud.Search;
+import com.thp.project.vintud.entity.impl.Search;
 
 public interface SearchDao {
     void createSearch(Search search);

@@ -7,8 +7,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet(name = "MyAnnouncementsServlet", value = "/MyAnnouncementsServlet")
 public class MyAnnouncementsServlet extends HttpServlet {
@@ -28,10 +26,6 @@ public class MyAnnouncementsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getParameter("edit").equals("edit")) {
-            String myAnnouncementId = request.getParameter("myAnnouncementId");
-            this.getServletContext().getRequestDispatcher("/WEB-INF/update-announcement.jsp").forward(request, response);
-        } else if (request.getParameter("delete").equals("delete")) {
             MyAnnouncementsController myAnnouncementsController = new MyAnnouncementsController();
             AnnouncementImpl announcement = new AnnouncementImpl();
             String id = request.getParameter("id") != null ? request.getParameter("id").trim() : null;
@@ -47,6 +41,5 @@ public class MyAnnouncementsServlet extends HttpServlet {
                 e.printStackTrace();
             }
             this.getServletContext().getRequestDispatcher("/WEB-INF/myannouncements.jsp").forward(request, response);
-        }
     }
 }

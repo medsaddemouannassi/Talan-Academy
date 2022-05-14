@@ -6,34 +6,11 @@ import com.thp.project.vintud.dao.factory.VintudFactoryImpl;
 import com.thp.project.vintud.entity.impl.AnnouncementImpl;
 import com.thp.project.vintud.entity.impl.UserImpl;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 public class AnnouncementController {
     static VintudFactory vintudFactory = new VintudFactoryImpl();
     AnnouncementDao announcementDao = vintudFactory.getAnnouncementDaoImpl();
-        /*
-        vintudFactory.getAnnouncementDaoImpl().createAnnouncement(announcement);
-
-        AnnouncementImpl announcement1 = new AnnouncementImpl();
-        announcement1.setId(1);
-        announcement1.setTitle("announcement 3");
-        announcement1.setDescription("description 3");
-        announcement1.setCategoryId(2);
-        announcement1.setPrice(17.27);
-        announcement1.setPublication_date(Date.valueOf("2020-12-05"));
-        announcement1.setStatus(Status.VALIDATED);
-        announcement1.setAvailable(true);
-        announcement1.setView_number(7);
-        announcement1.setLocalisation("Tunis");
-        announcement1.setUserId(3);
-        vintudFactory.getAnnouncementDaoImpl().updateAnnouncement(announcement1);
-
-        vintudFactory.getAnnouncementDaoImpl().deleteAnnouncement(announcement);
-
-        vintudFactory.getAnnouncementDaoImpl().SendReqReserveArticle(1);
-
-        */
 
     // Get all announcements
     public List<AnnouncementImpl> getAnnouncements() {

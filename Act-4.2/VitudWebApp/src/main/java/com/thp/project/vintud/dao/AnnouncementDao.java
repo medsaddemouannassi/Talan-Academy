@@ -34,7 +34,4 @@ public interface AnnouncementDao {
 
     // Display posted announcements by user
     List<AnnouncementImpl> disAnnByUser(int id);
-
-    // Display favorite announcements by user
-    List<AnnouncementImpl> disFavByUser(int id);
 }

@@ -1,5 +1,6 @@
 package com.thp.project.vintud.dao.impl;
 
+import com.thp.project.vintud.Status;
 import com.thp.project.vintud.dao.FavoriteDao;
 import com.thp.project.vintud.entity.impl.AnnouncementImpl;
 import com.thp.project.vintud.entity.impl.Favorite;
@@ -12,6 +13,8 @@ import java.util.List;
 
 public class FavoriteDaoImpl implements FavoriteDao {
     VintudFactory vintudFactory = new VintudFactoryImpl();
+
+
 
     // Create favorite announcement
     @Override
@@ -39,7 +42,6 @@ public class FavoriteDaoImpl implements FavoriteDao {
                     }
                 }
                 announcements.add(announcementId);
-                announcements.forEach(System.out::println);
                 Integer[] announcementsSQL = announcements.toArray(new Integer[announcements.size()]);
                 Array array = connection.createArrayOf("Integer", announcementsSQL);
                 query = "UPDATE users SET favorite_announcements = ? WHERE id = ?";
@@ -62,15 +64,36 @@ public class FavoriteDaoImpl implements FavoriteDao {
 
     // Delete favorite announcement
     @Override
-    public void deleteFavorite(int id) {
+    public void deleteFavorite(int announcementId, int userId) {
         Connection connection = vintudFactory.getConnectionManager();
         if (connection == null) {
             return;
         }
-        String query = "DELETE FROM favorites WHERE id = ?";
+        String query = "DELETE FROM favorites WHERE announcement_id = ? AND user_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, announcementId);
+            preparedStatement.setInt(2, userId);
             preparedStatement.executeUpdate();
+            query = "SELECT favorite_announcements FROM users WHERE id = ?";
+            List<Integer> announcements = new ArrayList<>();
+            try (PreparedStatement preparedStatement1 = connection.prepareStatement(query)) {
+                preparedStatement1.setInt(1, userId);
+                ResultSet resultSet = preparedStatement1.executeQuery();
+                if (resultSet.next() && resultSet.getArray(1) != null) {
+                    Integer[] array = (Integer[]) resultSet.getArray(1).getArray();
+                    for (Integer elem : array) {
+                        if (elem != announcementId ) announcements.add(elem);
+                    }
+                }
+                Integer[] announcementsSQL = announcements.toArray(new Integer[announcements.size()]);
+                Array array = connection.createArrayOf("Integer", announcementsSQL);
+                query = "UPDATE users SET favorite_announcements = ? WHERE id = ?";
+                try (PreparedStatement preparedStatement2 = connection.prepareStatement(query)) {
+                    preparedStatement2.setArray(1, array);
+                    preparedStatement2.setInt(2, userId);
+                    preparedStatement2.executeUpdate();
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -152,5 +175,51 @@ public class FavoriteDaoImpl implements FavoriteDao {
                 e.printStackTrace();
             }
         }
+    }
+
+    // Display favorite announcements by user
+    @Override
+    public List<AnnouncementImpl> disFavByUser(int id) {
+        Connection connection = vintudFactory.getConnectionManager();
+        if (connection == null) {
+            return null;
+        }
+        String query = "SELECT favorite_announcements FROM users WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next() && resultSet.getArray(1) != null) {
+                Integer[] array = (Integer[]) resultSet.getArray(1).getArray();
+                List<AnnouncementImpl> announcements = new ArrayList<>();
+                for (Integer elem : array) {
+                    query = "SELECT * FROM announcement WHERE id = ?";
+                    try (PreparedStatement preparedStatement1 = connection.prepareStatement(query)) {
+                        preparedStatement1.setInt(1, elem);
+                        resultSet = preparedStatement1.executeQuery();
+                        if (resultSet.next()) {
+                            AnnouncementImpl announcement = new AnnouncementImpl();
+                            announcement.setId(elem);
+                            announcement.setTitle(resultSet.getString("title").replaceAll("  ", ""));
+                            announcement.setDescription(resultSet.getString("description").replaceAll("  ", ""));
+                            announcement.setCategoryId(resultSet.getInt("category_id"));
+                            announcement.setPrice(resultSet.getInt("price"));
+                            announcement.setPhoto(resultSet.getBlob("picture"));
+                            announcement.setPublication_date(resultSet.getDate("publication_date"));
+                            Status status = resultSet.getString("status") == null ? null : Status.valueOf(resultSet.getString("status"));
+                            announcement.setStatus(status);
+                            announcement.setAvailable(resultSet.getBoolean("is_available"));
+                            announcement.setView_number(resultSet.getInt("view_number"));
+                            announcement.setLocalisation(resultSet.getString("localisation").replaceAll("  ", ""));
+                            announcement.setUserId(resultSet.getInt("user_id"));
+                            announcements.add(announcement);
+                        }
+                    }
+                }
+                    return announcements;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

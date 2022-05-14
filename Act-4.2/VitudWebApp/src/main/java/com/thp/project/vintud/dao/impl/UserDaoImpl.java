@@ -1,7 +1,6 @@
 package com.thp.project.vintud.dao.impl;
 
 import com.thp.project.vintud.dao.UserDao;
-import com.thp.project.vintud.entity.User;
 import com.thp.project.vintud.entity.impl.AnnouncementImpl;
 import com.thp.project.vintud.entity.impl.UserImpl;
 import com.thp.project.vintud.dao.factory.VintudFactory;

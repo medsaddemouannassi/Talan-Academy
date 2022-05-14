@@ -58,6 +58,15 @@
         <url-pattern>/vintud/update-announcement</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>FavoriteServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.FavoriteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FavoriteServlet</servlet-name>
+        <url-pattern>/vintud/favorite</url-pattern>
+    </servlet-mapping>
+
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>

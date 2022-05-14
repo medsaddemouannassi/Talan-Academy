@@ -13,10 +13,10 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<form class="container col-lg-4" method="post" action="announcement">
+<form class="container col-lg-4" method="post" action="update-announcement">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="title" placeholder="${myAnnouncementTitle}" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="text" class="form-control" name="title" value="${myAnnouncementTitle}" id="exampleInputEmail1" aria-describedby="emailHelp">
     </div>
     <div class="mb-3">
         <label for="exampleInputDescription" class="form-label">Description</label>
@@ -24,11 +24,12 @@
     </div>
     <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">Category</label>
-        <select class="form-select" name="category" value="${myAnnouncementCategory}" id="inputGroupSelect01">
-            <option selected>Choose category</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select class="form-select" name="category" id="inputGroupSelect01">
+            <option selected value="${myAnnouncementCategory}">${myAnnouncementCategory}</option>
+            <option disabled>Choose category</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
         </select>
     </div>
     <div class="mb-3">
@@ -39,6 +40,8 @@
         <label for="exampleInputLocalisation" class="form-label">Localisation</label>
         <input type="text" class="form-control" name="localisation" value="${myAnnouncementLocalisation}" id="exampleInputLocalisation">
     </div>
+    <c:set var="id" value="${myAnnouncementId}"/>
+    <input type="text" hidden value="${myAnnouncementId}" class="form-control" id="submit">
     <input type="submit" class="form-control" id="submit">
     <c:if test="${ !empty updateAnnouncementMsg }"><small><c:out value="${ updateAnnouncementMsg }" /></small></c:if>
 </form>
