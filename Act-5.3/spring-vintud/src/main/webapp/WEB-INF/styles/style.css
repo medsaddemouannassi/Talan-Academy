@@ -1,0 +1,7 @@
+.form {
+    border: 1px solid gray;
+    border-radius: 7px;
+    padding: 27px;
+    background-color: rgba(227, 242, 253, 0.7);
+    color: #666E76;
+}

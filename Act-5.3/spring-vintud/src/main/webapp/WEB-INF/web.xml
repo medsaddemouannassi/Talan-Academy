@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>AnnouncementServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.AnnouncementServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AnnouncementServlet</servlet-name>
+        <url-pattern>/vintud/create/announcement</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AnnouncementsServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.AnnouncementsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AnnouncementsServlet</servlet-name>
+        <url-pattern>/vintud/announcements</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignInServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.SignInServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignInServlet</servlet-name>
+        <url-pattern>/vintud/signin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ConnectionServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.ConnectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConnectionServlet</servlet-name>
+        <url-pattern>/vintud/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MyAnnouncementsServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.MyAnnouncementsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyAnnouncementsServlet</servlet-name>
+        <url-pattern>/vintud/myannouncements</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateAnnouncementServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.UpdateAnnouncementServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateAnnouncementServlet</servlet-name>
+        <url-pattern>/vintud/update-announcement</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FavoriteServlet</servlet-name>
+        <servlet-class>com.thp.project.vintud.servlets.FavoriteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FavoriteServlet</servlet-name>
+        <url-pattern>/vintud/favorite</url-pattern>
+    </servlet-mapping>
+
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
+        </jsp-property-group>
+    </jsp-config>
+</web-app>
