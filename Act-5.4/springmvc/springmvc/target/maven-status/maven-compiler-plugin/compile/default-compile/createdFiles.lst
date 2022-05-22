@@ -1,0 +1,4 @@
+com\thp\springmvc\entity\Moussaillon.class
+com\thp\springmvc\controller\HelloController.class
+com\thp\springmvc\config\MyWebAppInitializer.class
+com\thp\springmvc\config\SpringWebConfig.class
