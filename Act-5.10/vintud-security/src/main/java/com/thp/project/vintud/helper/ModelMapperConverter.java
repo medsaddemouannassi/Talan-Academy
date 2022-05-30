@@ -6,14 +6,12 @@ import com.thp.project.vintud.entity.impl.AnnouncementImpl;
 import com.thp.project.vintud.entity.impl.UserImpl;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
 public class ModelMapperConverter {
     private static final ModelMapper modelMapper;
 
@@ -82,7 +80,7 @@ public class ModelMapperConverter {
         return modelMapper.map(announcementDto, AnnouncementImpl.class);
     }
 
-    public AnnouncementDto toAnnouncementDto(AnnouncementImpl announcement) {
+    public AnnouncementDto toAnnouncementDto(Optional<AnnouncementImpl> announcement) {
         return modelMapper.map(announcement, AnnouncementDto.class);
     }
 }

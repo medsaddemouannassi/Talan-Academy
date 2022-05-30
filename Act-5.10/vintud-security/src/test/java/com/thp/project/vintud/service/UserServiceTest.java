@@ -1,6 +1,6 @@
 package com.thp.project.vintud.service;
 
-import com.thp.project.vintud.Config;
+import com.thp.project.vintud.config.Config;
 import com.thp.project.vintud.dao.UserDao;
 import com.thp.project.vintud.dto.UserDto;
 import com.thp.project.vintud.entity.impl.RoleImpl;
@@ -33,7 +33,7 @@ class UserServiceTest {
     void setUp() {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class);
         this.modelMapperConverter = applicationContext.getBean(ModelMapperConverter.class);
-        this.userService = new UserService(this.modelMapperConverter, this.userDao);
+        this.userService = new UserService(this.modelMapperConverter, this.userDao, passwordEncoder);
     }
 
     @Test

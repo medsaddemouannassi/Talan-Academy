@@ -1,5 +1,6 @@
 package com.thp.project.vintud.entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thp.project.vintud.Status;
 import com.thp.project.vintud.entity.Announcement;
 import org.hibernate.annotations.Type;
@@ -15,7 +16,8 @@ public class AnnouncementImpl implements Announcement, Serializable {
     private int announcement_id;
     private String title;
     private String description;
-    @ManyToOne @JoinColumn( name="category_id" ) @Transient
+    @ManyToOne(cascade=CascadeType.MERGE) @JoinColumn( name="category_id" )
+    @JsonIgnore
     private CategoryImpl categoryId;
     private double price;
     @Type(type="org.hibernate.type.BinaryType")
@@ -29,6 +31,7 @@ public class AnnouncementImpl implements Announcement, Serializable {
     private int view_number;
     private String localisation;
     @ManyToOne @JoinColumn( name="user_id" )
+    @JsonIgnore
     private UserImpl user;
 
     public int getAnnouncement_id() {
@@ -127,6 +130,19 @@ public class AnnouncementImpl implements Announcement, Serializable {
 
     @Override
     public String toString() {
-        return "AnnouncementImpl{" + "title='" + title + '\'' + ", description='" + description + '\'' + ", categoryId=" + categoryId + ", price=" + price + ", photo=" + photo + ", publication_date=" + publication_date + ", status='" + status + '\'' + ", is_available=" + is_available + ", view_number=" + view_number + ", localisation='" + localisation + '\'' + ", userId=" + user + '}';
+        return "AnnouncementImpl{" +
+                "announcement_id=" + announcement_id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", categoryId=" + categoryId +
+                ", price=" + price +
+                ", photo=" + photo +
+                ", publication_date=" + publication_date +
+                ", status=" + status +
+                ", is_available=" + is_available +
+                ", view_number=" + view_number +
+                ", localisation='" + localisation + '\'' +
+                ", user=" + user +
+                '}';
     }
 }

@@ -39,6 +39,7 @@ public class CategoryImpl implements Category, Serializable {
     @Override
     public String toString() {
         return "CategoryImpl{" +
+                "category_id=" + category_id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';

@@ -1,5 +1,6 @@
 package com.thp.project.vintud.entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thp.project.vintud.entity.User;
 
 import javax.persistence.*;
@@ -21,11 +22,13 @@ public class UserImpl implements User, Serializable {
     @Column(name = "phone")
     private String phoneNumber;
     private String address;
-    @ManyToOne(cascade=CascadeType.ALL) @JoinColumn( name="role_id")
+    @ManyToOne(cascade=CascadeType.MERGE) @JoinColumn( name="role_id")
+    @JsonIgnore
     private RoleImpl role_id;
     @Column(name = "is_connected")
     private boolean isConnected;
-    @OneToMany( targetEntity=AnnouncementImpl.class, mappedBy="user" ) @Transient
+    @OneToMany( targetEntity=AnnouncementImpl.class, mappedBy="user" )
+    @JsonIgnore
     private List<AnnouncementImpl> posted_announcements = new ArrayList<>();
 
     @OneToMany( targetEntity=Favorite.class, mappedBy="user" ) @Transient
